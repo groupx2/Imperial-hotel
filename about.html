@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        .responsive {
+            padding: 0 6px;
+            float: left;
+            width: 33.33%;
+            margin-bottom: 30px;
+        }
+
+        .gallery {
+            border: 1px solid #ccc;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+        }
+
+        .desc {
+            padding: 15px;
+            text-align: center;
+        }
+
+        @media only screen and (max-width: 800px) {
+            .responsive {
+                width: 50%;
+                margin: 6px 0;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .responsive {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="mt-3" style="text-align: center;">About Us</h2>
+        <p style="text-align: center;">
+            The finest star class hotel in Sri Lanka with the best dining, accommodation, and entertainment
+            facilities.
+            This 450 roomed beauty is located facing the foaming ripples of the Indian Ocean and remains to be
+            one
+            of
+            the best hotels in Sri Lanka. Step-in to be lost in unearthly cuisines, cozy hideouts, heavenly
+            surroundings,
+            and the best of services, which other hotels in Sri Lanka could not offer. Imperial Hotel Sri Lanka; one
+            of
+            the best hotels in Sri Lanka is not only the best place to relax, eat and indulge, but is also the
+            finest
+            place to celebrate. Come! Delight & breathe the air of luxury at the heart of Colombo.</p>
+
+        <h3 style="text-align: center;" class="mb-4">Our Services</h3>
+        <div class="responsive">
+            <div class="gallery">
+                <img src="Images/restaurant2.jpeg" alt="Restaurant">
+                <div class="desc">Restaurants</div>
+            </div>
+        </div>
+
+        <div class="responsive">
+            <div class="gallery">
+                <img src="Images/gym.jpg" alt="Gym">
+                <div class="desc">Gym facilities</div>
+            </div>
+        </div>
+
+        <div class="responsive">
+            <div class="gallery">
+                <img src="Images/spa.jpg" alt="Spa">
+                <div class="desc">Spa facilities</div>
+            </div>
+        </div>
+
+        <div class="responsive">
+            <div class="gallery">
+                <img src="Images/pool2.jpg" alt="Swimming Pool">
+                <div class="desc">Swimming Pool</div>
+            </div>
+        </div>
+
+        <div class="responsive">
+            <div class="gallery">
+                <img src="Images/hotelbar.jpg" alt="Bar">
+                <div class="desc">Bar facilities</div>
+            </div>
+        </div>
+
+        <div class="responsive">
+            <div class="gallery">
+                <img src="Images/wedding hall.jpg" alt="Wedding Hall">
+                <div class="desc">Wedding Hall</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
