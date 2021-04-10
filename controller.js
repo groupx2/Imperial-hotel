@@ -32,7 +32,8 @@ myModule.controller('addLoginController',function($scope,$http,$cookies){
               $scope.headers = response.headers;
               $scope.config = response.config;
               $cookies.put("jwt", response.data.token,{
-                  secure: true
+                  secure: true,
+                  sameSite: 'None'
               });
             //  window.location.href = '/welcome.html';
 
