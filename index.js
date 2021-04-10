@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ["ngRoute","ngCookies"]);
+var app = angular.module('myApp', ["ngRoute"]);
 
 const stripe = Stripe('pk_test_51IZXhAIHgciOTRlC8z9vpvgV1yZlblnWRZdnmIfwZZxJaTUXEevJOoRNQWEY8u58wG25kEIPu4Hop9k7x8j30PhM008P69QoOS');
 
@@ -31,6 +31,9 @@ app.config(function ($routeProvider,$httpProvider) {
     .when("/contactUs", {
       templateUrl: "contact.html",
       controller: "contactCtrl"
+    })
+    .when("/login",{
+      templateUrl: "login.html"
     });
 });
 
