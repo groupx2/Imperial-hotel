@@ -31,10 +31,10 @@ myModule.controller('addLoginController',function($scope,$http,$cookies){
               $scope.status = response.status;
               $scope.headers = response.headers;
               $scope.config = response.config;
-              $cookies.put("jwt", response.data.token,{
-                  secure: true,
-                  samesite: 'None'
-              });
+            //   $cookies.put("jwt", response.data.token,{
+            //       secure: true,
+            //       samesite: 'None'
+            //   });
             //  window.location.href = '/welcome.html';
 
           }, function (response) {
