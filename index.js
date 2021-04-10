@@ -92,7 +92,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
     document.getElementById("availableRooms").innerHTML= '';
 
     fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`, {
-       mode: 'no-cors',
+       mode: 'cors',
        credentials: 'include'
     }) .then(response => {
       console.log(response);
