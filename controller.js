@@ -32,7 +32,7 @@ myModule.controller('addLoginController',function($scope,$http,$cookies){
               $scope.headers = response.headers;
               $scope.config = response.config;
 
-            document.cookie = `jwt=${response.data.token}; samesite=none; path=/`;
+            document.cookie = `jwt=${response.data.token};  path=/`;
             //   $cookies.put("jwt", response.data.token,{
             //       secure: true,
             //       samesite: 'None'
