@@ -1,11 +1,11 @@
-var app = angular.module('myApp', ["ngRoute"]);
+var app = angular.module('myApp', ["ngRoute","ngCookies"]);
 
 const stripe = Stripe('pk_test_51IZXhAIHgciOTRlC8z9vpvgV1yZlblnWRZdnmIfwZZxJaTUXEevJOoRNQWEY8u58wG25kEIPu4Hop9k7x8j30PhM008P69QoOS');
 
-const status = 1;
+const env = 0;
 
 let url;
-if (status === 0) {
+if (env === 0) {
     url = 'http://127.0.0.1:8000'
  } 
 else{

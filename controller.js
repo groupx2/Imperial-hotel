@@ -1,9 +1,9 @@
 var  myModule = angular.module("myModule",['ngCookies']);
 
-const status = 1;
+const env = 0;
 
 let url;
-if (status === 0) {
+if (env === 0) {
     url = 'http://127.0.0.1:8000'
  } 
 else{
