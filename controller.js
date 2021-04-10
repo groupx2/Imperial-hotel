@@ -33,7 +33,8 @@ myModule.controller('addLoginController',function($scope,$http,$cookies){
               $scope.config = response.config;
               $cookies.put("jwt", response.data.token,{
                   secure: true,
-                  samesite: 'None'
+                  samesite: 'None',
+                  domain: 'https://imperial-hotel.herokuapp.com'
               });
             //  window.location.href = '/welcome.html';
 
