@@ -31,10 +31,10 @@ app.config(function ($routeProvider,$httpProvider) {
     .when("/contactUs", {
       templateUrl: "contact.html",
       controller: "contactCtrl"
-    })
-    .when("/login",{
-      templateUrl: "login.html"
     });
+    // .when("/login",{
+    //   templateUrl: "login.html"
+    // });
 });
 
 app.controller("contactCtrl", function ($scope, $http, $log) {
