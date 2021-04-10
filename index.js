@@ -91,12 +91,24 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
   $scope.change = async function () {
     document.getElementById("availableRooms").innerHTML= '';
 
-    const response = await fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`);
-    response.then(e => {
-      console.log(e);
-    }).catch(er => {
-      console.log(er);
-    })
+    fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`)
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function(data) {
+        console.log(data);
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
 
   
   //   $http({
