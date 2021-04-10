@@ -88,18 +88,11 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
       $scope.rooms[x].guest--;
     }
   }
-  $scope.change = function () {
+  $scope.change = async function () {
     document.getElementById("availableRooms").innerHTML= '';
 
-    fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`) .then(response => {
-      console.log(response);
-          response.data.data.availableRoomsCategories.forEach(item => {
-           const room = item._id;
-          angular.element(document.querySelector('#availableRooms')).append($compile(myHtml(room))($scope))
-      });
-    }).catch(e => {
-      console.log(e);
-    });
+    const response = await fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`);
+    console.log(response);
 
   
   //   $http({
