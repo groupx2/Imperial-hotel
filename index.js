@@ -90,20 +90,35 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
   }
   $scope.change = function () {
     document.getElementById("availableRooms").innerHTML= '';
-    $http({
-      method: 'GET',
-      url: `${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`,
-    })
-     .then(function(response){
-      response.data.data.availableRoomsCategories.forEach(item => {
-        const room = item._id;
-        angular.element(document.querySelector('#availableRooms')).append($compile(myHtml(room))($scope))
+
+    fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`, {
+       mode: 'cors',
+       credentials: 'include'
+    }) .then(response => {
+      console.log(response);
+          response.data.data.availableRoomsCategories.forEach(item => {
+           const room = item._id;
+          angular.element(document.querySelector('#availableRooms')).append($compile(myHtml(room))($scope))
       });
-    }, function (response) {
-      $scope.error = response.data;
-      alert("unsuccessful call");
-      console.log($scope.error);
-   });
+    }).catch(e => {
+      console.log(e);
+    });
+
+  
+  //   $http({
+  //     method: 'GET',
+  //     url: `${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`,
+  //   })
+  //    .then(function(response){
+  //     response.data.data.availableRoomsCategories.forEach(item => {
+  //       const room = item._id;
+  //       angular.element(document.querySelector('#availableRooms')).append($compile(myHtml(room))($scope))
+  //     });
+  //   }, function (response) {
+  //     $scope.error = response.data;
+  //     alert("unsuccessful call");
+  //     console.log($scope.error);
+  //  });
   }
   $scope.bookNow =  function (category) {
     $http({
