@@ -1,6 +1,6 @@
 var  myModule = angular.module("myModule",['ngCookies']);
 
-const env = 0;
+const env = 1;
 
 let url;
 if (env === 0) {

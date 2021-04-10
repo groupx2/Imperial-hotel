@@ -2,7 +2,7 @@ var app = angular.module('myApp', ["ngRoute","ngCookies"]);
 
 const stripe = Stripe('pk_test_51IZXhAIHgciOTRlC8z9vpvgV1yZlblnWRZdnmIfwZZxJaTUXEevJOoRNQWEY8u58wG25kEIPu4Hop9k7x8j30PhM008P69QoOS');
 
-const env = 0;
+const env = 1;
 
 let url;
 if (env === 0) {
