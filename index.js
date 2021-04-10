@@ -88,10 +88,10 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
       $scope.rooms[x].guest--;
     }
   }
-  $scope.change = function () {
+  $scope.change = async function () {
     document.getElementById("availableRooms").innerHTML= '';
 
-    fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`, {
+   await fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`, {
        mode: 'cors',
        credentials: 'include'
     }) .then(response => {
