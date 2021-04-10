@@ -17,6 +17,7 @@ myModule.controller('addLoginController',function($scope,$http,$cookies){
         $scope.user =  $http({
               method: 'POST',
               url: `${url}/api/users/login`,
+              mode: 'cors',
              withcredentials: true,
               data: {
                   email: $scope.email,
@@ -32,7 +33,6 @@ myModule.controller('addLoginController',function($scope,$http,$cookies){
               $scope.headers = response.headers;
               $scope.config = response.config;
 
-            document.cookie = `jwt=${response.data.token}; samesite=none; path=/`;
             //   $cookies.put("jwt", response.data.token,{
             //       secure: true,
             //       samesite: 'None'
