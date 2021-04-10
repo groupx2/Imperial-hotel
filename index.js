@@ -2,6 +2,9 @@ var app = angular.module('myApp', ["ngRoute","ngCookies"]);
 
 const stripe = Stripe('pk_test_51IZXhAIHgciOTRlC8z9vpvgV1yZlblnWRZdnmIfwZZxJaTUXEevJOoRNQWEY8u58wG25kEIPu4Hop9k7x8j30PhM008P69QoOS');
 
+document.cookie = "AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax";
+
+
 const env = 1;
 
 let url;
