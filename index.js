@@ -91,9 +91,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
   $scope.change = function () {
     document.getElementById("availableRooms").innerHTML= '';
 
-    fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`, {
-       credentials: 'include'
-    }) .then(response => {
+    fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`) .then(response => {
       console.log(response);
           response.data.data.availableRoomsCategories.forEach(item => {
            const room = item._id;
