@@ -118,7 +118,8 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
      .then(function(response){
       response.data.data.availableRoomsCategories.forEach(item => {
         const room = item._id;
-        angular.element(document.querySelector('#availableRooms')).append($compile(myHtml(room))($scope))
+        angular.element(document.querySelector('#availableRooms')).append($compile(myHtml(room))($scope));
+        
       });
     }, function (response) {
       $scope.error = response.data;
@@ -133,24 +134,54 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
     })
     .then(function(response){
       const room = response.data.data.data[0];
-      
+
       $http({
-        method: 'GET',
-        url: `${url}/api/bookings/checkout-session/${room._id}?checkIn=${$scope.chIn}&checkOut=${$scope.chOut}`,
-        withCredentials: true
-      }).then(async function(session){
-             // 2) Create checkout form + chanre credit card
-        try{
-          await stripe.redirectToCheckout({
-             sessionId: session.data.session.id
-          });
-        } catch (err) {
-          console.log(err);
-        showAlert('error', err);
-       }
-      },function (response) {
-         console.log(response);
-      });
+        method: 'POST',
+        url: `${url}/api/users/login`,
+       withcredentials: true,
+        data: {
+            email: "user@mail.com",
+            password: "Pass1234"
+        },
+        headers:{    
+          'Content-Type': 'application/json'
+      },
+    })
+    .then(function(response){
+        $scope.userData = response.data;
+        $scope.status = response.status;
+        $scope.headers = response.headers;
+        $scope.config = response.config;
+
+      //   $cookies.put("jwt", response.data.token,{
+      //       secure: true,
+      //       samesite: 'None'
+      //   });
+      //  window.location.href = '/welcome.html';
+
+    }, function (response) {
+        $scope.error = response.data;
+        alert("unsuccessful call");
+       console.log($scope.error);
+    });
+      
+      // $http({
+      //   method: 'GET',
+      //   url: `${url}/api/bookings/checkout-session/${room._id}?checkIn=${$scope.chIn}&checkOut=${$scope.chOut}`,
+      //   withCredentials: true
+      // }).then(async function(session){
+      //        // 2) Create checkout form + chanre credit card
+      //   try{
+      //     await stripe.redirectToCheckout({
+      //        sessionId: session.data.session.id
+      //     });
+      //   } catch (err) {
+      //     console.log(err);
+      //   showAlert('error', err);
+      //  }
+      // },function (response) {
+      //    console.log(response);
+      // });
      
 
   }, function (response) {
