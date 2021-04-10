@@ -1,6 +1,9 @@
 var app = angular.module('myApp', ["ngRoute"]);
 
-app.config(function ($routeProvider) {
+const stripe = Stripe('pk_test_51IZXhAIHgciOTRlC8z9vpvgV1yZlblnWRZdnmIfwZZxJaTUXEevJOoRNQWEY8u58wG25kEIPu4Hop9k7x8j30PhM008P69QoOS');
+
+app.config(function ($routeProvider,$httpProvider) {
+  $httpProvider.defaults.withCredentials = true;
   $routeProvider
     .when("/", {
       templateUrl: "home.html"
@@ -26,7 +29,7 @@ app.controller("contactCtrl", function ($scope, $http, $log) {
     console.log($scope.enquiry);
     $http({
       method: "POST",
-      url: "http://localhost:3000/enquiries",
+      url: "https://imperial-hotel.herokuapp.com/enquiries",
       data: $scope.enquiry,
       headers: { 'content-Type': 'application/json' }
     })
@@ -41,7 +44,7 @@ app.controller("contactCtrl", function ($scope, $http, $log) {
       });
   }
 });
-app.controller('myCtrl', function ($scope) {
+app.controller('myCtrl', function ($scope,$http,$compile) {
   $scope.chIn = new Date();
   var today = new Date();
   today.setDate(today.getDate() + 1);
@@ -74,4 +77,104 @@ app.controller('myCtrl', function ($scope) {
       $scope.rooms[x].guest--;
     }
   }
+  $scope.change = function () {
+    document.getElementById("availableRooms").innerHTML= '';
+    $http({
+      method: 'GET',
+      url: `https://imperial-hotel.herokuapp.com/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`,
+    })
+     .then(function(response){
+      response.data.data.availableRoomsCategories.forEach(item => {
+        const room = item._id;
+        angular.element(document.querySelector('#availableRooms')).append($compile(myHtml(room))($scope))
+      });
+    }, function (response) {
+      $scope.error = response.data;
+      alert("unsuccessful call");
+      console.log($scope.error);
+   });
+  }
+  $scope.bookNow =  function (category) {
+    $http({
+      method: 'GET',
+      url: `https://imperial-hotel.herokuapp.com/api/rooms/availableRooms?roomCategory=${category}`,
+    })
+    .then(function(response){
+      const room = response.data.data.data[0];
+      
+      $http({
+        method: 'GET',
+        url: `https://imperial-hotel.herokuapp.com/api/bookings/checkout-session/${room._id}?checkIn=${$scope.chIn}&checkOut=${$scope.chOut}`
+      }).then(async function(session){
+             // 2) Create checkout form + chanre credit card
+        try{
+          await stripe.redirectToCheckout({
+             sessionId: session.data.session.id
+          });
+        } catch (err) {
+          console.log(err);
+        showAlert('error', err);
+       }
+      },function (response) {
+         console.log(response);
+      });
+     
+
+  }, function (response) {
+      $scope.error = response.data;
+      alert("unsuccessful call");
+      console.log($scope.error);
+   });
+  }
 });
+
+
+
+
+
+
+
+
+
+const getType = guest => {
+  let type;
+  if (guest == 1){
+      return "Single";
+  } else if (guest == 2){
+      return "Double";
+  }
+  else if (guest == 3){
+       return "Triple";
+  }
+}
+
+
+function myHtml(room) {
+   return  `
+    <div class="rooms col col-3">
+    <div class="card" >
+    <div class="container">
+       <div class="shadow-lg p-3 mb-6 bg-white rounded" >
+       <img src="/assets/img/index.jpg" alt="" class="rounded" class="rooms-img"
+           style="max-width:100%;">
+        <h3 class="room-title">${room.name}</h3>
+         <p class="room-text">${room.description}</p>
+      <div>
+       <div class="details-container">
+         <img src="assets/img/bed.png" alt="tick" class="list-icon">
+         <p class="list-text">${room.type}</p>
+       </div>
+     </div>
+
+     <p class="amount-text">LKR ${room.price} Per Night</p>
+       <div class="buttons-container">  
+     <a href="" ng-click="bookNow('${room._id}')" class="btn btn-fill btn-lg">Book Now</a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+   `;
+}
+
+
