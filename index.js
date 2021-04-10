@@ -2,6 +2,16 @@ var app = angular.module('myApp', ["ngRoute"]);
 
 const stripe = Stripe('pk_test_51IZXhAIHgciOTRlC8z9vpvgV1yZlblnWRZdnmIfwZZxJaTUXEevJOoRNQWEY8u58wG25kEIPu4Hop9k7x8j30PhM008P69QoOS');
 
+const status = 1;
+
+let url;
+if (status === 0) {
+    url = 'http://127.0.0.1:8000'
+ } 
+else{
+     url = 'https://imperial-hotel.herokuapp.com'
+    }
+
 app.config(function ($routeProvider,$httpProvider) {
   $httpProvider.defaults.withCredentials = true;
   $routeProvider
@@ -29,7 +39,7 @@ app.controller("contactCtrl", function ($scope, $http, $log) {
     console.log($scope.enquiry);
     $http({
       method: "POST",
-      url: "https://imperial-hotel.herokuapp.com/enquiries",
+      url: `${url}/enquiries`,
       data: $scope.enquiry,
       headers: { 'content-Type': 'application/json' }
     })
@@ -81,7 +91,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
     document.getElementById("availableRooms").innerHTML= '';
     $http({
       method: 'GET',
-      url: `https://imperial-hotel.herokuapp.com/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`,
+      url: `${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`,
     })
      .then(function(response){
       response.data.data.availableRoomsCategories.forEach(item => {
@@ -97,14 +107,15 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
   $scope.bookNow =  function (category) {
     $http({
       method: 'GET',
-      url: `https://imperial-hotel.herokuapp.com/api/rooms/availableRooms?roomCategory=${category}`,
+      url: `${url}/api/rooms/availableRooms?roomCategory=${category}`,
     })
     .then(function(response){
       const room = response.data.data.data[0];
       
       $http({
         method: 'GET',
-        url: `https://imperial-hotel.herokuapp.com/api/bookings/checkout-session/${room._id}?checkIn=${$scope.chIn}&checkOut=${$scope.chOut}`
+        url: `${url}/api/bookings/checkout-session/${room._id}?checkIn=${$scope.chIn}&checkOut=${$scope.chOut}`,
+        withCredentials: true
       }).then(async function(session){
              // 2) Create checkout form + chanre credit card
         try{
@@ -151,10 +162,7 @@ const getType = guest => {
 
 function myHtml(room) {
    return  `
-    <div class="rooms col col-3">
     <div class="card" >
-    <div class="container">
-       <div class="shadow-lg p-3 mb-6 bg-white rounded" >
        <img src="/assets/img/index.jpg" alt="" class="rounded" class="rooms-img"
            style="max-width:100%;">
         <h3 class="room-title">${room.name}</h3>
@@ -170,11 +178,5 @@ function myHtml(room) {
        <div class="buttons-container">  
      <a href="" ng-click="bookNow('${room._id}')" class="btn btn-fill btn-lg">Book Now</a>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
    `;
 }
-
-

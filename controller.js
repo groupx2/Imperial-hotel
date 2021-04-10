@@ -1,5 +1,14 @@
 var  myModule = angular.module("myModule",['ngCookies']);
 
+const status = 1;
+
+let url;
+if (status === 0) {
+    url = 'http://127.0.0.1:8000'
+ } 
+else{
+     url = 'https://imperial-hotel.herokuapp.com'
+    }
 
 
 myModule.controller('addLoginController',function($scope,$http,$cookies){
@@ -7,7 +16,7 @@ myModule.controller('addLoginController',function($scope,$http,$cookies){
         $cookies.myFavorite = 'oatmeal';
         $scope.user =  $http({
               method: 'POST',
-              url: 'https://imperial-hotel.herokuapp.com/api/users/login',
+              url: `${url}/api/users/login`,
              withcredentials: true,
               data: {
                   email: $scope.email,
