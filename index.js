@@ -92,7 +92,11 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
     document.getElementById("availableRooms").innerHTML= '';
 
     const response = await fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`);
-    console.log(response);
+    response.then(e => {
+      console.log(e);
+    }).catch(er => {
+      console.log(er);
+    })
 
   
   //   $http({
