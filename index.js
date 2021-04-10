@@ -91,18 +91,16 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
   $scope.change = async function () {
     document.getElementById("availableRooms").innerHTML= '';
 
-   await fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`, {
+   const response = await fetch(`${url}/api/rooms/availableRoomCategories?type=${getType($scope.rooms[0].guest)}`, {
        mode: 'cors',
        credentials: 'include'
-    }) .then(response => {
+    }); 
       console.log(response);
-          response.data.data.availableRoomsCategories.forEach(item => {
+     response.data.data.availableRoomsCategories.forEach(item => {
            const room = item._id;
           angular.element(document.querySelector('#availableRooms')).append($compile(myHtml(room))($scope))
       });
-    }).catch(e => {
-      console.log(e);
-    });
+    
 
   
   //   $http({
