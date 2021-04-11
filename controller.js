@@ -11,6 +11,12 @@ else{
     }
 
 
+
+    app.config(function ($routeProvider,$httpProvider) {
+        $httpProvider.defaults.withCredentials = true;
+      });
+
+
 myModule.controller('addLoginController',function($scope,$http,$cookies){
     $scope.login = function() { 
         $scope.user =  $http({
