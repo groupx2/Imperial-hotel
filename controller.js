@@ -12,7 +12,7 @@ else{
 
 
 
-    myModule.config(function ($routeProvider,$httpProvider) {
+    myModule.config(function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
       });
 
