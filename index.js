@@ -130,7 +130,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
         showAlert('error', err);
        }
       },function (response) {
-         console.log(response);
+         console.log(response.data.data.message);
       });
      
 
