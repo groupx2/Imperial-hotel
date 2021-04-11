@@ -13,6 +13,10 @@ else{
      url = 'https://imperial-hotel.herokuapp.com'
     }
 
+if (window.location.href.split('?')[1] === "showAlert") {
+   alert("ROOM BOOKED SUCCESSFULLY");
+}
+
 app.config(function ($routeProvider,$httpProvider) {
   $httpProvider.defaults.withCredentials = true;
   $routeProvider
