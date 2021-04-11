@@ -117,8 +117,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
       
       $http({
         method: 'GET',
-        url: `${url}/api/bookings/checkout-session/${room._id}?checkIn=${$scope.chIn}&checkOut=${$scope.chOut}`,
-        withCredentials: true
+        url: `${url}/api/bookings/checkout-session/${room._id}?checkIn=${$scope.chIn}&checkOut=${$scope.chOut}`
       }).then(async function(session){
              // 2) Create checkout form + chanre credit card
         try{
