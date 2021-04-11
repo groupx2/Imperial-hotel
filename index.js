@@ -166,7 +166,7 @@ function myHtml(room) {
    return  `
       <div class="box">
       <div class="imgBx">
-       <img src="/assets/img1.jpg">
+       <img src="${url}/img/roomCategories/${room.roomCategory.photo}">
       </div>
      <div class="content">
        <div>
