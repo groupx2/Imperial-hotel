@@ -61,23 +61,23 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
   today.setDate(today.getDate() + 1);
   $scope.chOut = today;
   $scope.rooms = [{ guest: 1 }];
-  $scope.total = function () {
-    var sum = 0, x;
-    for (x = 0; x < $scope.rooms.length; x++) {
-      sum += $scope.rooms[x].guest;
-    }
-    return sum;
-  }
-  $scope.addRoom = function () {
-    if ($scope.rooms.length < 3) {
-      $scope.rooms.push({ guest: 1 });
-    }
-  }
-  $scope.removeRoom = function (x) {
-    if ($scope.rooms.length > 1) {
-      $scope.rooms.splice(x, 1);
-    }
-  }
+  // $scope.total = function () {
+  //   var sum = 0, x;
+  //   for (x = 0; x < $scope.rooms.length; x++) {
+  //     sum += $scope.rooms[x].guest;
+  //   }
+  //   return sum;
+  // }
+  // $scope.addRoom = function () {
+  //   if ($scope.rooms.length < 3) {
+  //     $scope.rooms.push({ guest: 1 });
+  //   }
+  // }
+  // $scope.removeRoom = function (x) {
+  //   if ($scope.rooms.length > 1) {
+  //     $scope.rooms.splice(x, 1);
+  //   }
+  // }
   $scope.increaseGuest = function (x) {
     if ($scope.rooms[x].guest < 3) {
       $scope.rooms[x].guest++;
