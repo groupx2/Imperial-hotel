@@ -114,7 +114,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
     })
     .then(function(response){
       const room = response.data.data.data[0];
-      
+      console.log(room);
       $http({
         method: 'GET',
         url: `${url}/api/bookings/checkout-session/${room._id}?checkIn=${$scope.chIn}&checkOut=${$scope.chOut}`,
