@@ -127,10 +127,10 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
           });
         } catch (err) {
           console.log(err);
-        showAlert('error', err);
+          alert('error');
        }
       },function (response) {
-         console.log(response.data.message);
+         alert(response.data.message);
       });
      
 
