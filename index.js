@@ -179,6 +179,8 @@ function myHtml(room) {
        <br>
       <br>
       <br>
+      <br>
+      <br>
     <h3><P>LKR${room.price} / per night</P> </h3>
    <br>
    <button class="butn" ng-click="bookNow('${room._id}')">
