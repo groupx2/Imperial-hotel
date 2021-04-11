@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800&display=swap');
+
+.bd
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container
+{
+    position: relative;
+    width: 1100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.container .box
+{
+    position: relative;
+    width: 505px;
+    height: 475px;
+    background: #ccc;
+    overflow: hidden;
+    transition: 0.5s;
+}
+.container .box:hover
+{
+    transform: scale(1.25);
+    z-index: 1;
+    box-shadow: 0 25px 40px rgba(0,0,0,.5);
+}
+.container .box .imgBx
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.container .box .imgBx:before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg,rgba(102, 0, 51, 0.836),rgba(0, 0, 0, 0.87));
+    z-index: 1;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    transition: 0.5s;
+}
+.container .box:hover .imgBx:before
+{
+    opacity: 1;
+}
+.container .box .imgBx img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.container .box .content
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    padding: 20px;
+    align-items: flex-end;
+}
+.container .box .content h2
+{
+    color: #fff;
+    transform: translateY(320px);
+    transition: 0.5s;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-size: 30px;
+}
+
+
+.container .box .content h3
+{
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-size: 30px;
+}
+.container .box .content p
+{
+    color: #fff;
+    transform: translateY(350px);
+    transition: 0.5s;
+    font-size: 14px;
+}
+.container .box:hover .content h2
+{
+    transform: translateY(0);
+    transition-delay: 0.6s;
+}
+.container .box:hover .content p
+{
+    transform: translateY(0);
+    transition-delay: 0.8s;
+}
+
+
+.butn {
+  position: absolute;
+  top: 80%;
+  left: 87%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #3b010171;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  text-align: center;
+}
+ .butn:hover {
+  background-color: black;
+  color: white;
+}
+
+div.a {
+    text-transform: uppercase;
+  }
+  
+
+.containerg{
+    font-family: serif;
+    color: rgba(51, 1, 47, 0.856);
+}
+

@@ -126,7 +126,6 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
              sessionId: session.data.session.id
           });
         } catch (err) {
-          console.log(err);
           alert('error');
        }
       },function (response) {
@@ -165,21 +164,30 @@ const getType = guest => {
 
 function myHtml(room) {
    return  `
-    <div class="card" >
-       <img src="/assets/img/index.jpg" alt="" class="rounded" class="rooms-img"
-           style="max-width:100%;">
-        <h3 class="room-title">${room.name}</h3>
-         <p class="room-text">${room.description}</p>
-      <div>
-       <div class="details-container">
-         <img src="assets/img/bed.png" alt="tick" class="list-icon">
-         <p class="list-text">${room.type}</p>
-       </div>
-     </div>
-
-     <p class="amount-text">LKR ${room.price} Per Night</p>
-       <div class="buttons-container">  
-     <a href="" ng-click="bookNow('${room._id}')" class="btn btn-fill btn-lg">Book Now</a>
-    </div>
+      <div class="box">
+      <div class="imgBx">
+       <img src="/assets/img1.jpg">
+      </div>
+     <div class="content">
+       <div>
+         <h2>${room.name}</h2>
+        <br>
+       <p>${room.description}</p>
+       <br>
+       <br>
+       <br>
+       <br>
+      <br>
+    <h3><P>LKR${room.price} / per night</P> </h3>
+   <br>
+   <button class="butn" ng-click='${bookNow(room._id)}'>
+   <h4>Book Now</h3>
+  </button>
+ 
+  </div>
+</div>
+</div>
    `;
 }
+
+
