@@ -98,7 +98,6 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
      .then(function(response){
       response.data.data.availableRoomsCategories.forEach(item => {
         const room = item._id;
-        console.log(room);
         angular.element(document.querySelector('#availableRooms')).append($compile(myHtml(room))($scope));
         
       });
@@ -167,7 +166,7 @@ function myHtml(room) {
    return  `
       <div class="box">
       <div class="imgBx">
-       <img src="${url}/img/roomCategories/${room.roomCategory.photo}">
+       <img src="${url}/img/roomCategories/${room.photo}">
       </div>
      <div class="content">
        <div>
