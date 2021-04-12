@@ -69,7 +69,7 @@ myModule.controller('addSignUpController',function($scope,$http,$log){
               $scope.status = response.status;
               $scope.headers = response.headers;
               $scope.config = response.config;
-              window.location.href = '/welcome.html';
+              window.location.href = '/';
           }, function (response) {
               $scope.error = response.data;
               alert("unsuccessful call");
