@@ -235,6 +235,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
     }) .then(function(response){
       if (response.data.data.data.length === 0) document.querySelector('#show-bookings').innerHTML = `<h5 style="margin: auto auto;">No Bookings</h5>`;
       response.data.data.data.forEach(item => {
+        console.log(item);
         angular.element(document.querySelector('#show-bookings')).append($compile(`
         <div class="card ml-2" style="width: 18rem;margin-top: 10px;">
         <img class="card-img-top" src="./assets/img1.jpg" alt="Card image cap">
