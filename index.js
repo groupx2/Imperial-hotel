@@ -233,7 +233,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
       response.data.data.data.forEach(item => {
         angular.element(document.querySelector('#show-bookings')).append($compile(`
         <div class="card ml-2" style="width: 18rem;margin-top: 10px;">
-        <img class="card-img-top" src="./assets/img1.jpg" alt="Card image cap">
+        <img class="card-img-top" src="${url}/img/roomCategories/${item.room.roomCategory.photo}" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">${item.room.roomCategory.name}</h5>
             <h6 class="card-title">${item.room.roomCategory.type}</h6>
