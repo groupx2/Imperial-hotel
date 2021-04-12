@@ -20,14 +20,17 @@
 	<!-- <link rel="stylesheet" href="./assets/style.css"> -->
 </head>
 
-<body ng-controller="myCtrl">
+<body ng-controller="myCtrl" ng-init="checkUser()" class="body">
   <div class="d-flex" style="background-color: rgb(28, 0, 14);">
 
-    <a class="mr-auto ml-3" href="#!aboutUs">
+    <a class="mr-auto ml-3">
       <img src="Images/logo.jpg" alt="logo" style="width:100px;">
-    </a>
-    <a class="align-middle mt-auto mb-auto mr-4" style="color: rgb(255, 255, 255);" href="login.html">
-      Sign In<i class="fas fa-sign-in-alt pl-2"></i>
+      <a class="align-middle mt-auto mb-auto mr-4 signout" style="color: rgb(255, 255, 255);cursor: pointer;" ng-click="signOut()"">
+        Sign Out<i class="fas fa-sign-in-alt pl-2"></i>
+      </a>
+      <a class="align-middle mt-auto mb-auto mr-4 signin" style="color: rgb(255, 255, 255);cursor: pointer;" href="login.html"">
+        Sign In<i class="fas fa-sign-in-alt pl-2"></i>
+      </a>`
     </a>
 
   </div>
@@ -53,6 +56,12 @@
         </li>
         <li class="nav-item">
           <a class="nav-link ml-3 mr-3 pl-0 pr-0" href="#!contactUs">Contact Us</a>
+        </li>
+        <li class="nav-item bookings-tab">
+          <a class="nav-link ml-3 mr-3 pl-0 pr-0" href="#!/user/bookings">Bookings</a>
+        </li>
+        <li class="nav-item settings-tab">
+          <a class="nav-link ml-3 mr-3 pl-0 pr-0" href="#!/user/settings">Settings</a>
         </li>
       </ul>
     </nav>

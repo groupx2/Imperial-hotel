@@ -66,6 +66,28 @@ app.controller("contactCtrl", function ($scope, $http, $log) {
   }
 });
 app.controller('myCtrl', function ($scope,$http,$compile) {
+  document.querySelector('.body').hidden = true;
+  document.querySelector('.signin').hidden = true;
+  document.querySelector('.signout').hidden = true;
+  document.querySelector('.bookings-tab').hidden = true;
+  document.querySelector('.settings-tab').hidden = true;
+  $scope.checkUser = function () {
+    $http({
+      method: 'GET',
+      url: `${url}/api/users/me`,
+    })
+     .then(function(response){
+      document.querySelector('.body').hidden = false;
+      document.querySelector('.signout').hidden = false;
+       document.querySelector('.bookings-tab').hidden = false;
+       document.querySelector('.settings-tab').hidden = false;
+      }
+     , function (response) {
+      document.querySelector('.body').hidden = false;
+      document.querySelector('.signin').hidden = false;
+   });
+   
+  }
   $scope.chIn = new Date();
   var today = new Date();
   today.setDate(today.getDate() + 1);
@@ -148,6 +170,97 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
       console.log($scope.error);
    });
   }
+  $scope.prepareUserPage = function() {
+    document.getElementById("user-view").hidden = true;
+    $http({
+      method: 'GET',
+      url: `${url}/api/users/me`,
+    }).then(function(response){
+      document.getElementById("user_name").value = response.data.data.data.name;
+      document.getElementById("email").value = response.data.data.data.email;
+      document.querySelector(".form__user-photo").src = `${url}/img/users/${response.data.data.data.photo}`;
+      document.getElementById("user-view").hidden = false;
+    }, function (err) {
+       console.log(err);
+     });
+ }
+  $scope.saveSetting = function() {
+    const name =  document.getElementById("user_name").value;
+    const email =  document.getElementById("email").value;
+    const photo =  document.getElementById("user-photo").files[0];
+    const form = new FormData();
+    form.append('name', document.getElementById("user_name").value);
+    form.append('email',  document.getElementById("email").value);
+    form.append('photo', document.getElementById('user-photo').files[0]);
+    $http({
+      method: 'PATCH',
+      url: `${url}/api/users/updateMe`,
+      data: form,
+      transformRequest: angular.identity, 
+      headers : {'Content-Type':undefined}
+    }) .then(function(response){
+       console.log(response);
+          alert("Updated Successfully");
+    }, function (err) {
+       console.log(err);
+     });
+  }
+  $scope.savePassword = function() {
+    const passwordCurrent =  document.getElementById("password-current").value;
+    const password =  document.getElementById("password").value;
+    const passwordConfirm =  document.getElementById("password-confirm").value;
+    $http({
+      method: 'PATCH',
+      url: `${url}/api/users/updateMyPassword`,
+      data: {
+        passwordCurrent,
+        password,
+        passwordConfirm
+      },
+      headers:{    
+        'Content-Type': 'application/json'
+    },
+    }) .then(function(response){
+          alert("Updated Successfully");
+    }, function (err) {
+       console.log(err);
+     });
+  }
+
+  $scope.showBooking = function() {
+    document.querySelector('#show-bookings').innerHTML = '';
+    $http({
+      method: 'GET',
+      url: `${url}/api/bookings/getMyBookings`,
+    }) .then(function(response){
+      if (response.data.data.data.length === 0) document.querySelector('#show-bookings').innerHTML = `<h5 style="margin: auto auto;">No Bookings</h5>`;
+      response.data.data.data.forEach(item => {
+        angular.element(document.querySelector('#show-bookings')).append($compile(`
+        <div class="card ml-2" style="width: 18rem;margin-top: 10px;">
+        <img class="card-img-top" src="./assets/img1.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">${item.room.roomCategory.name}</h5>
+            <h6 class="card-title">${item.room.roomCategory.type}</h6>
+        </div>
+      </div>
+        `)($scope));
+        
+      });
+   }, function (err) {
+     console.log(err);
+ });
+  }
+
+  $scope.signOut = function() {
+    $http({
+      method: 'GET',
+      url: `${url}/api/users/logout`,
+    }) .then(function(response){
+      window.location.href = '/';
+    }, function (err) {
+      console.log(err);
+  });
+}
 });
 
 
@@ -197,5 +310,3 @@ function myHtml(room) {
 </div>
    `;
 }
-
-
