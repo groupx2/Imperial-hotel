@@ -35,6 +35,12 @@ app.config(function ($routeProvider,$httpProvider) {
     .when("/contactUs", {
       templateUrl: "contact.html",
       controller: "contactCtrl"
+    })
+    .when("/user/settings", {
+      templateUrl: "settings.html"
+    })
+    .when("/user/bookings", {
+      templateUrl: "bookingRoom.html"
     });
 });
 
