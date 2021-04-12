@@ -252,10 +252,13 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
   }
 
   $scope.signOut = function() {
+  
     $http({
       method: 'GET',
       url: `${url}/api/users/logout`,
     }) .then(function(response){
+      document.querySelector('.signin').hidden = false;
+      document.querySelector('.signout').hidden = true;
       window.location.href = '/';
     }, function (err) {
       console.log(err);
