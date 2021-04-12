@@ -41,8 +41,7 @@ myModule.controller('addLoginController',function($scope,$http,$cookies){
 
           }, function (response) {
               $scope.error = response.data;
-              alert("unsuccessful call");
-             console.log($scope.error);
+              alert("Please try again later.");
           });
   }
 
@@ -72,8 +71,7 @@ myModule.controller('addSignUpController',function($scope,$http,$log){
               window.location.href = '/';
           }, function (response) {
               $scope.error = response.data;
-              alert("unsuccessful call");
-             console.log($scope.error);
+              alert("please try again later.");
           });
     }
 });
@@ -99,8 +97,7 @@ myModule.controller('addForgotPasswordController',function($scope,$http,$log){
               alert(response.data.message);
           }, function (response) {
               $scope.error = response.data;
-              alert("unsuccessful call");
-             console.log($scope.error);
+              alert("please try again later.");
           });
     }
 });

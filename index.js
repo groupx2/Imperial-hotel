@@ -47,7 +47,6 @@ app.config(function ($routeProvider,$httpProvider) {
 app.controller("contactCtrl", function ($scope, $http, $log) {
   $scope.enquiry = null;
   $scope.sendCmt = function () {
-    console.log($scope.enquiry);
     $http({
       method: "POST",
       url: `${url}/enquiries`,
@@ -136,7 +135,6 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
     }, function (response) {
       $scope.error = response.data;
       alert("unsuccessful call");
-      console.log($scope.error);
    });
   }
   $scope.bookNow =  function (category) {
@@ -167,7 +165,6 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
   }, function (response) {
       $scope.error = response.data;
       alert("unsuccessful call");
-      console.log($scope.error);
    });
   }
   $scope.prepareUserPage = function() {
@@ -181,7 +178,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
       document.querySelector(".form__user-photo").src = `${url}/img/users/${response.data.data.data.photo}`;
       document.getElementById("user-view").hidden = false;
     }, function (err) {
-       console.log(err);
+    
      });
  }
   $scope.saveSetting = function() {
@@ -199,10 +196,9 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
       transformRequest: angular.identity, 
       headers : {'Content-Type':undefined}
     }) .then(function(response){
-       console.log(response);
           alert("Updated Successfully");
     }, function (err) {
-       console.log(err);
+
      });
   }
   $scope.savePassword = function() {
@@ -223,7 +219,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
     }) .then(function(response){
           alert("Updated Successfully");
     }, function (err) {
-       console.log(err);
+    
      });
   }
 
@@ -248,7 +244,6 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
         
       });
    }, function (err) {
-     console.log(err);
  });
   }
 
@@ -262,7 +257,6 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
       document.querySelector('.signout').hidden = true;
       window.location.href = '/';
     }, function (err) {
-      console.log(err);
   });
 }
 });
