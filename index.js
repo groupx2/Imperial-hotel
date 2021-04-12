@@ -241,6 +241,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
         <div class="card-body">
             <h5 class="card-title">${item.room.roomCategory.name}</h5>
             <h6 class="card-title">${item.room.roomCategory.type}</h6>
+            <h6 class="card-title">Room Number: ${item.room.roomNumber}</h6>
         </div>
       </div>
         `)($scope));
