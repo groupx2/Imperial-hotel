@@ -1,4 +1,4 @@
-var  myModule = angular.module("myModule",['ngCookies']);
+var  myModule = angular.module("myModule",[]);
 
 const env = 1;
 
