@@ -97,6 +97,7 @@ myModule.controller('addForgotPasswordController',function($scope,$http,$log){
               alert(response.data.message);
           }, function (response) {
               $scope.error = response.data;
+              console.log(response.data);
               alert("please try again later.");
           });
     }
