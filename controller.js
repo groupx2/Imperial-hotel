@@ -83,7 +83,7 @@ myModule.controller('addForgotPasswordController',function($scope,$http,$log){
               method: 'POST',
               url: 'https://imperial-hotel.herokuapp.com/api/users/forgotPassword',
               data: {
-                  email: $scope.email || "test1@gmail.com",
+                  email: $scope.email,
               },
               headers:{    
                 'Content-Type': 'application/json'
