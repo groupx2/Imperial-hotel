@@ -102,3 +102,26 @@ myModule.controller('addForgotPasswordController',function($scope,$http,$log){
           });
     }
 });
+
+myModule.controller('addResetPasswordController',function($scope,$http,$log){
+    $scope.resetPassword = function() { 
+        $scope.user =  $http({
+              method: 'PATCH',
+              url: `https://imperial-hotel.herokuapp.com/api/users/resetPassword/${window.location.href.split('?')[1]}`,
+              data: {
+                  password: document.getElementById("newPassword").value,
+                  passwordConfirm: document.getElementById("confirmPassword").value
+              },
+              headers:{    
+                'Content-Type': 'application/json'
+            },
+          })
+          .then(function(response){
+              alert(response.data.message);
+          }, function (response) {
+              $scope.error = response.data;
+              console.log(response.data);
+              alert("please try again later.");
+          });
+    }
+});
