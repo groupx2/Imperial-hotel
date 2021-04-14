@@ -17,7 +17,7 @@ else{
       });
 
 
-myModule.controller('addLoginController',function($scope,$http,$cookies){
+myModule.controller('addLoginController',function($scope,$http){
     $scope.login = function() { 
         $scope.user =  $http({
               method: 'POST',
