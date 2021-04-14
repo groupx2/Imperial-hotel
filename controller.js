@@ -117,7 +117,8 @@ myModule.controller('addResetPasswordController',function($scope,$http,$log){
             },
           })
           .then(function(response){
-              alert(response.data.message);
+              alert("Password changed successfully");
+              window.location.href = '/';
           }, function (response) {
               $scope.error = response.data;
               console.log(response.data);
