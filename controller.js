@@ -41,8 +41,7 @@ myModule.controller('addLoginController',function($scope,$http){
 
           }, function (response) {
               $scope.error = response.data;
-              console.log(response);
-              alert("Please try again later.");
+              alert("Your password incorrect or email");
           });
   }
 
