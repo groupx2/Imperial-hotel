@@ -41,6 +41,7 @@ myModule.controller('addLoginController',function($scope,$http){
 
           }, function (response) {
               $scope.error = response.data;
+              console.log(response.data);
               alert("Please try again later.");
           });
   }
