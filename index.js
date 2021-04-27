@@ -238,7 +238,7 @@ app.controller('myCtrl', function ($scope,$http,$compile) {
             <h5 class="card-title">${item.room.roomCategory.name}</h5>
             <h6 class="card-title">${item.room.roomCategory.type}</h6>
             <h6 class="card-title">Room Number: ${item.room.roomNumber}</h6>
-            <p class="card-title">${item.room.checkIn} → ${item.room.checkOut}</p>
+            <p class="card-title">${item.room.checkIn.split('T')[0]} → ${item.room.checkOut.split('T')[0]}</p>
         </div>
       </div>
         `)($scope));
